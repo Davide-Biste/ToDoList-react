@@ -1,0 +1,32 @@
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #3399ff;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: flex;
+    color: #333333;
+    text-align: center;
+    padding: 1rem 1rem;
+    text-decoration: none;
+    font-family: AppleSystemUIFont;
+    font-size: 2rem;
+    font-style:oblique;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #cccccc;
+}
+
+.navbar-right{
+    float: right;
+}
