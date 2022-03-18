@@ -1,12 +1,11 @@
 import React from 'react';
-import '../../style/access.css';
 
-const Login = () => {
+const Home = () => {
     return (
         <div>
-
+            CIao
         </div>
     );
 };
 
-export default Login;
+export default Home;

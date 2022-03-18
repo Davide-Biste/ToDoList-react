@@ -1,11 +1,9 @@
-import Nav from "./Component/Navbar/Nav";
-import {useState} from "react";
 import "./style/app.css"
-
+import Home from "./Component/Home";
 
 function App() {
     return(
-        <Nav/>
+        <Home/>
     );
 }
 
