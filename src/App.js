@@ -1,10 +1,31 @@
-import "./style/app.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import HeaderNavbar from "./Component/HeaderNavbar";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Component/Home";
+import Login from "./Component/user/Login";
+import Register from "./Component/user/Register";
+import "./index.css";
 
 function App() {
-    return(
-        <Home/>
-    );
+  return (
+    <div className="App">
+      <HeaderNavbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/*
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/contact" component={Contact} />
+                  <Route exact path="/users/add" component={AddUser} />
+                  <Route exact path="/users/edit/:id" component={EditUser} />
+                  <Route exact path="/users/:id" component={User} />
+                  <Route component={NotFound} />
+                  */}
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
