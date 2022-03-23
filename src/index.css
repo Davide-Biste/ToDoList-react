@@ -8,3 +8,12 @@
 .form{
     padding-top: 2rem;
 }
+.icon-x{
+    -webkit-transition: width 0.5s 0s ease-in;
+    transition: color 0.5s ease-in;
+}
+
+.icon-x:hover{
+    color: #CC0000;
+    cursor: pointer;
+}

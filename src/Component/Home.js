@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import UserHome from "./home/UserHome";
+import DefaultHome from "./home/DefaultHome";
 
 const Home = () => {
-  return <div>Home</div>;
+  if (localStorage.getItem("token")) {
+    return <UserHome />;
+  } else {
+    return <DefaultHome />;
+  }
 };
 
 export default Home;
