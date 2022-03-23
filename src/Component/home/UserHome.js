@@ -14,7 +14,8 @@ import "../../index.css";
 
 const UserHome = () => {
   const [descriptionToDo, setDescriptionToDo] = useState("");
-  const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+  const [openAlertAdd, setOpenAlertAdd] = useState(false);
+  const [openAlertDelete, setOpenAlertDelete] = useState(false);
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
   const [currentIdTodo, setCurrentIdTodo] = useState("");
@@ -35,10 +36,14 @@ const UserHome = () => {
   };
 
   const enterKeyPress = async (evt) => {
-    if (evt.key === "Enter") {
-      setOpenAlertSuccess(true);
+    if (evt.key === "Enter" && evt.target.value !== "") {
+      console.log(evt);
       await postToDo(descriptionToDo);
+
+      setOpenAlertAdd(true);
       await refreshTodo();
+    } else {
+      return;
     }
   };
 
@@ -46,8 +51,11 @@ const UserHome = () => {
     if (reason === "clickaway") {
       return;
     }
-
-    setOpenAlertSuccess(false);
+    if (openAlertAdd === true) {
+      setOpenAlertAdd(false);
+    } else if (openAlertDelete === true) {
+      setOpenAlertDelete(false);
+    }
   };
 
   const writeDescription = (evt) => {
@@ -64,6 +72,7 @@ const UserHome = () => {
 
   const wantToDeleteCloseModal = async () => {
     await deleteTodo(currentIdTodo);
+    setOpenAlertDelete(true);
     await refreshTodo();
     handleCloseModal();
   };
@@ -87,13 +96,13 @@ const UserHome = () => {
             height: "100vh",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             borderRadius: "2rem",
             alignItems: "top",
           }}
         >
           <Snackbar
-            open={openAlertSuccess}
+            open={openAlertAdd}
             autoHideDuration={6000}
             onClose={handleClose}
           >
@@ -105,15 +114,28 @@ const UserHome = () => {
               ToDo aggiunta con successo!
             </Alert>
           </Snackbar>
+          <Snackbar
+            open={openAlertDelete}
+            autoHideDuration={6000}
+            onClose={handleClose}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="error"
+              sx={{ width: "100%" }}
+            >
+              ToDo eliminata con successo!
+            </Alert>
+          </Snackbar>
           <Container maxWidth="sm">
             <Box
               sx={{
-                bgcolor: "#cfe8fc",
                 height: "auto",
                 display: "flex",
                 flexDirection: "column",
                 padding: "1rem 1rem 1rem 1rem",
-                margin: "1rem 1rem 1rem",
+                marginRight: "5rem",
+                marginLeft: "5rem",
               }}
             >
               <TextField
@@ -129,12 +151,11 @@ const UserHome = () => {
           <Container maxWidth="sm">
             <Box
               sx={{
-                bgcolor: "#cfe8fc",
                 height: "50vh",
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "flex-start",
                 padding: "1rem 1rem 1rem 1rem",
-                margin: "1rem 1rem 1rem",
               }}
             >
               <Stack spacing={2}>
