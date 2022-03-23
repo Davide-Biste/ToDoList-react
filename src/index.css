@@ -13,7 +13,12 @@
     transition: color 0.5s ease-in;
 }
 
+
 .icon-x:hover{
     color: #CC0000;
     cursor: pointer;
+}
+
+.font{
+    font-family: 'Roboto', sans-serif;
 }

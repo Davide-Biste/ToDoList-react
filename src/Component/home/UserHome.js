@@ -3,6 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { TextField, Snackbar, Alert } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
@@ -21,10 +22,10 @@ const UserHome = () => {
   const [currentIdTodo, setCurrentIdTodo] = useState("");
   const [currentDescriptionTodo, setCurrentDescriptionTodo] = useState("");
 
+  const [todo, setTodo] = useState([]);
+
   const handleCloseModal = () => setModalDeleteShow(false);
   const handleOpenModal = () => setModalDeleteShow(true);
-
-  const [todo, setTodo] = useState([]);
 
   useEffect(async () => {
     refreshTodo();
@@ -39,7 +40,7 @@ const UserHome = () => {
     if (evt.key === "Enter" && evt.target.value !== "") {
       console.log(evt);
       await postToDo(descriptionToDo);
-
+      evt.target.value = "";
       setOpenAlertAdd(true);
       await refreshTodo();
     } else {
@@ -83,6 +84,9 @@ const UserHome = () => {
     await setCurrentDescriptionTodo(description);
   };
 
+  const checkCheckBoxToDo = (desc) => {
+    console.log(desc);
+  };
   return (
     <React.Fragment>
       <CssBaseline />
@@ -169,19 +173,26 @@ const UserHome = () => {
                       }}
                       key={todo._id}
                     >
-                      <p
-                        style={{
-                          fontFamily:
-                            "-apple-system, BlinkMacSystemFont, sans-serif",
-                          fontStyle:
-                            "-apple-system, BlinkMacSystemFont, sans-serif",
-                          fontSize: "1.2rem",
-                          marginLeft: "1rem",
-                          marginTop: "1rem",
-                        }}
-                      >
-                        {todo.description}
-                      </p>
+                      <div style={{ display: "flex" }}>
+                        <Checkbox
+                          inputProps={{ "aria-label": "controlled" }}
+                          id={todo._id}
+                          onChange={() => checkCheckBoxToDo(todo.description)}
+                        />
+                        <p
+                          style={{
+                            fontFamily:
+                              "-apple-system, BlinkMacSystemFont, sans-serif",
+                            fontStyle:
+                              "-apple-system, BlinkMacSystemFont, sans-serif",
+                            fontSize: "1.2rem",
+                            marginLeft: "1rem",
+                            marginTop: "1rem",
+                          }}
+                        >
+                          {todo.description}
+                        </p>
+                      </div>
                       <ClearIcon
                         className="icon-x"
                         style={{ marginRight: "1rem" }}

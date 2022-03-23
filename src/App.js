@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Component/Home";
 import Login from "./Component/user/Login";
 import Register from "./Component/user/Register";
+import Profile from "./Component/user/Profile";
+import Settings from "./Component/user/Settings";
 import "./index.css";
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/user" element={<Profile />} />
+        <Route path="/user/settings" element={<Settings />} />
         {/*
                   <Route exact path="/about" component={About} />
                   <Route exact path="/contact" component={Contact} />

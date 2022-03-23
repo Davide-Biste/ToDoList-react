@@ -22,9 +22,24 @@ export const postLogin = async (username, password) => {
   }
 };
 
+export const postRegister = async (username, password) => {
+  try {
+    let params = new URLSearchParams();
+    params.append("username", username);
+    params.append("password", password);
+
+    const user = await axios.post("/users", params);
+    console.log({ user });
+    return user;
+  } catch (e) {
+    console.log({ errorPostRegister: e });
+    return [];
+  }
+};
+
 export const postToDo = async (desc) => {
   try {
-    const params = new URLSearchParams();
+    let params = new URLSearchParams();
     params.append("description", desc);
 
     const todo = await axios.post("/to-do", params, {
