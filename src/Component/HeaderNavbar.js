@@ -11,6 +11,7 @@ import {
   IconButton,
   Tooltip,
   CircularProgress,
+  Typography,
 } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { Settings, Logout } from "@mui/icons-material";
@@ -42,11 +43,9 @@ const HeaderNavbar = () => {
     return (
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand>
-            <NavLink className="nav-link" exact to="/">
-              ToDoList
-            </NavLink>
-          </Navbar.Brand>
+          <MenuItem component={Link} to="/">
+            <Navbar.Brand>ToDoList</Navbar.Brand>
+          </MenuItem>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
