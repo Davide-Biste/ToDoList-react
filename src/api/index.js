@@ -47,7 +47,6 @@ export const postToDo = async (desc) => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
-    console.log(todo);
     return todo;
   } catch (e) {
     console.log({ errorPostLogin: e });
@@ -76,9 +75,28 @@ export const deleteTodo = async (id) => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
+    console.log({ deleted });
     return deleted;
   } catch (e) {
     console.log({ errorDeleteTodo: e });
+    return [];
+  }
+};
+
+export const putUser = async (id, username) => {
+  try {
+    let params = new URLSearchParams();
+    params.append("username", username);
+
+    const modified = await axios.put("/users/" + id, params, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    localStorage.setItem("username", username);
+    return modified;
+  } catch (e) {
+    console.log({ errorPutUser: e });
     return [];
   }
 };

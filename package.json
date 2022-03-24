@@ -2,7 +2,7 @@
   "name": "to-do-list-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8888",
+  "proxy": "https://davide-to-do.herokuapp.com/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
