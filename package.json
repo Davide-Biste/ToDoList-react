@@ -2,7 +2,7 @@
   "name": "to-do-list-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://davide-biste.github.io/ToDoList-react",
+  "homepage": "https://davide-biste.github.io/ToDoList-react/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

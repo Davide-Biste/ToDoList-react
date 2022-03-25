@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://davide-to-do.herokuapp.com";
+axios.defaults.baseURL = "https://davide-to-do.herokuapp.com/";
 console.log(axios.defaults.baseURL);
 axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
