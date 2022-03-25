@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Snackbar, Alert } from "@mui/material";
+import { TextField, Snackbar, Alert, CircularProgress } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -18,6 +18,7 @@ const UserHome = () => {
   const [openAlertAdd, setOpenAlertAdd] = useState(false);
   const [openAlertDelete, setOpenAlertDelete] = useState(false);
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [currentIdTodo, setCurrentIdTodo] = useState("");
   const [currentDescriptionTodo, setCurrentDescriptionTodo] = useState("");
@@ -32,8 +33,10 @@ const UserHome = () => {
   }, []);
 
   const refreshTodo = async () => {
+    setLoading(true);
     let append = await getTodo();
     setTodo(append);
+    setLoading(false);
   };
 
   const enterKeyPress = async (evt) => {
@@ -204,6 +207,15 @@ const UserHome = () => {
                   );
                 })}
               </Stack>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {loading && <CircularProgress />}
+              </Box>
             </Box>
           </Container>
         </Box>
