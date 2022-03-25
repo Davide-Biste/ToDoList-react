@@ -7,6 +7,7 @@ import Register from "./Component/user/Register";
 import Profile from "./Component/user/Profile";
 import Settings from "./Component/user/Settings";
 import "./index.css";
+import axios from "axios";
 
 function App() {
   return (
