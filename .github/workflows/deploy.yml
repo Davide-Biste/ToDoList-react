@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy GH
+
+# Controls when the workflow will run
+on:
+  # Triggerata quando avviene un push sulla branch master
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  CI: false
+# Per far si che la build andasse anche se ci sono degli warning
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # Viene fatto girare sull'ultima immagine di ubuntu
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2   
+      
+      - name: npm ci, build and test
+        run: |
+          npm ci
+          npm run build --if-present            
+      # npm ci è come npm i
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
