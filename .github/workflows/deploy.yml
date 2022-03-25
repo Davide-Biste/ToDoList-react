@@ -6,7 +6,7 @@ name: Deploy GH
 on:
   # Triggerata quando avviene un push sulla branch master
   push:
-    branches: [ main ]
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
