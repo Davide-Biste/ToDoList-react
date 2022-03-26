@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 axios.defaults.baseURL = "https://davide-to-do.herokuapp.com/";
 axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
